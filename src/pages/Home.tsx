@@ -39,27 +39,28 @@ const Home = () => {
             return axios.post('https://676de1f5df5d7dac1cc940e9.mockapi.io/products', newProduct);
         },
         onSuccess: () => {
-            queryClient.invalidateQueries('products');
+            queryClient.invalidateQueries({queryKey: ['products']});
         }
     });
-
+    
     const updateProduct = useMutation({
         mutationFn: (updatedProduct: ProductForm) => {
             return axios.put(`https://676de1f5df5d7dac1cc940e9.mockapi.io/products/${updatedProduct.id}`, updatedProduct);
         },
         onSuccess: () => {
-            queryClient.invalidateQueries('products');
+            queryClient.invalidateQueries({queryKey: ['products']});
         }
     });
-
+    
     const deleteProduct = useMutation({
         mutationFn: (id: string) => {
             return axios.delete(`https://676de1f5df5d7dac1cc940e9.mockapi.io/products/${id}`);
         },
         onSuccess: () => {
-            queryClient.invalidateQueries('products');
+            queryClient.invalidateQueries({queryKey: ['products']});
         }
     });
+    
 
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
